@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheShamelessSelfPromoApp">
         <activity
+            android:name=".PreviewActivity"
+            android:exported="true"
+            android:label="Message Preview"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
