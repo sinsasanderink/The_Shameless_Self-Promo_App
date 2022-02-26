@@ -8,15 +8,24 @@ class PreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preview)
-        val contactName = intent.getStringExtra("Contact Name")
-        val contactNumber = intent.getStringExtra("Contact Number")
-        val myDisplayName = intent.getStringExtra("My Display Name")
-        val includeJunior = intent.getBooleanExtra("Include Junior", false)
-        val jobTitle = intent.getStringExtra("Job Title")
-        val immediateStart = intent.getBooleanExtra("Immediate Start", false)
-        val startDate = intent.getStringExtra("Start Date")
-        val testString = "Contact Name: $contactName, Contact Number: $contactNumber, My Display Name: $myDisplayName, Include Junior: $includeJunior, Job Title: $jobTitle, Immediate Start: $immediateStart, Start Date: $startDate"
-        text_view_message.text = testString
+        // With "as Message" we tell Android what kind of class it is and convert it (this is called "casting")
+        // Type Casting = Taking an object of one Type and transforming it into another Type
+        // If we write the wrong data type (for example boolean instead Message) our app will crash and we'll get a class cast exception
+        val message = intent .getSerializableExtra("Message") as Message
+        val messagePreviewText = """
+            Hi ${message.contactName}, 
+            
+            My name is ${message.myDisplayName} and I am ${message.getFullJobDescription()}.
+            
+            I have a portfolio of apps to demonstrate my technical skills that I can show on request.
+            
+            I am able to start a new position ${message.getAvaibility()}.
+            
+            Please get in touch if you have any suitable roles for me.
+            
+            Thanks and best regards.
+        """.trimIndent()  // this code deletes the spaces in front of every line.
+        text_view_message.text = messagePreviewText
     }
 
 
